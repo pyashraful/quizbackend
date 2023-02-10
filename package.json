@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +26,7 @@
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.4",
     "tsconfig-paths": "^4.1.2",
