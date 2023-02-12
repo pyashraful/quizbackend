@@ -11,28 +11,14 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  name  String?
-  email String  @unique
+  id    Int    @id @default(autoincrement())
+  name  String
+  Posts Post[]
 }
 
-model Exam {
-  id           Int            @id @default(autoincrement())
-  title        String
-  ExamQuestion ExamQuestion[]
-}
-
-model Question {
-  id           Int            @id @default(autoincrement())
-  title        String
-  ExamQuestion ExamQuestion[]
-}
-
-model ExamQuestion {
-  Question   Question @relation(fields: [questionId], references: [id])
-  questionId Int
-  Exam       Exam     @relation(fields: [examId], references: [id])
-  examId     Int
-
-  @@id([questionId, examId])
+model Post {
+  id       Int    @id @default(autoincrement())
+  title    String
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId Int
 }
