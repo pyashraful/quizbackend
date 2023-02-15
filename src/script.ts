@@ -1,21 +1,41 @@
 import prisma from './db';
 
 async function main(): Promise<void> {
-  await prisma.user.deleteMany({});
-  const user = await prisma.user.create({
-    data: {
-      name: 'Alice',
-      email: 'alice@prisma.io',
-    },
-  });
-  console.log(user);
+  // await prisma.user.deleteMany({});
+  // const user = await prisma.user.create({
+  //   data: {
+  //     name: 'Alice',
+  //     Posts: {
+  //       create: [
+  //         {
+  //           title: 'this is 1st post',
+  //         },
+  //         {
+  //           title: 'this is 2nd post',
+  //         },
+  //         {
+  //           title: 'this is 3rd post',
+  //         },
+  //       ],
+  //     },
+  //   },
+  // });
 
-  const user2 = await prisma.user.create({
-    data: {
-      email: 'pg@gmail.com',
+  const user = await prisma.user.findUnique({
+    where: {
+      id: 1,
+    },
+    select: {
+      name: true,
+      Posts: {
+        select: {
+          title: true,
+        },
+      },
     },
   });
-  console.log('🚀 ~ file: script.ts:20 ~ main ~ user2', user2);
+
+  console.log(user);
 }
 
 main()
